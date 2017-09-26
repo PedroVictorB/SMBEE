@@ -1,0 +1,27 @@
+<h5>Analisar Material Bibliográfico (Coordenador)</h5>
+<div id="my-container"></div>
+<form class="" method="post" action="#">
+	<div class="form-group">
+		<div class="form-check">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" name="apr_coordenador_ok" id="apr_coordenador_1" value="true" cam-variable-name="apr_coordenador_ok" cam-variable-type="Boolean" checked>
+		    Aprovar?
+		  </label>
+		</div>
+	</div>
+
+  <script cam-script type="text/form-script">
+    var variableManager = camForm.variableManager;
+    camForm.on('form-loaded', function() {
+      // this callback is executed *before* the variables are loaded from the server.
+      // if we declare a variable here, its value will be fetched as well
+      variableManager.fetchVariable('isbn');
+    });
+
+    camForm.on('variables-fetched', function() {
+      // this callback is executed *after* the variables have been fetched from the server
+      var variableValue = variableManager.variableValue('isbn');
+      $('#my-container').text("ISBN do livro: "+variableValue);
+    });
+  </script>
+</form>
